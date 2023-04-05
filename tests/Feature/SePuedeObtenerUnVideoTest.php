@@ -10,20 +10,23 @@ use App\Models\Video;
 
 class SePuedeObtenerUnVideoTest extends TestCase
 {
+    //Cada vez que ejecuta el test hace la migraci'on, factories y de 'ultimo un rollbak
+    //para que los datos viejos no interfieran con la nueva ejecucion del test
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      */
     public function testSePuedeObtenerUnVideoTest()
     {
+        
         //CREAR EL ESCENARIO
 
         //Crear un video en la base de datos
-        factory(Video::class)->create([
+        Video::factory()->create([
             'id' => 1,
             'titulo' => 'Mi titulo',
-            'descripcion' => 'Mi descripcion',
-            'url_video' => 'https://www.youtube.com/hma0608'
-            
+            'descripcion' => "Mi descripcion",
+            'url_video' => 'https://www.youtube.com/hma0608'            
         ]);
 
         //Llamar al API para pedir ese video
@@ -33,7 +36,7 @@ class SePuedeObtenerUnVideoTest extends TestCase
         $respuesta->assertJsonFragment([
             'id' => 1,
             'titulo' => 'Mi titulo',
-            'descripcion' => 'Mi descripcion',
+            'descripcion' => "Mi descripcion",
             'url_video' => 'https://www.youtube.com/hma0608'
             
         ]);
