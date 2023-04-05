@@ -8,7 +8,12 @@ use App\Models\Video;
 class VideosController extends Controller
 {
     /* obtener un video */
-    public function getOne(Video $video){
+    public function show(Video $video){
         return $video;
+    }
+
+    /* obtener un listado de videos */
+    public function index(){
+        return Video::orderBy('created_at','desc')->get();
     }
 }
