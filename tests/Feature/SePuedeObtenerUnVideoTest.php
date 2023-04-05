@@ -19,7 +19,7 @@ class SePuedeObtenerUnVideoTest extends TestCase
     public function testSePuedeObtenerUnVideoTest()
     {
         
-        //CREAR EL ESCENARIO
+        /* //ESCENARIO 1. Crear video con datos predefinidos
 
         //Crear un video en la base de datos
         Video::factory()->create([
@@ -34,11 +34,21 @@ class SePuedeObtenerUnVideoTest extends TestCase
 
         //Comprobar que se nos devuelve el video
         $respuesta->assertJsonFragment([
-            'id' => 1,
+            'id' => 2,
             'titulo' => 'Mi titulo',
             'descripcion' => "Mi descripcion",
             'url_video' => 'https://www.youtube.com/hma0608'
             
-        ]);
+        ]); */
+
+        //ESCENARIO 2. Crear video con datos ramdom de factory
+        //Mejorar el c'odigo de la prueba tambi'en.
+
+        //Crear un video en la base de datos
+       $video= Video::factory()->create();
+
+        //Llamar al API para pedir ese video
+       $this->get(sprintf('api/videos/%s', $video->id))
+       ->assertJsonFragment($video->toArray());
     }
 }
