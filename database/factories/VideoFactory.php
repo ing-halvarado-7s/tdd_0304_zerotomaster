@@ -20,6 +20,7 @@ class VideoFactory extends Factory
         return [
             'titulo' => fake()->title(),
             'descripcion' => fake()->paragraph(),
+            'thumbnail' => fake()->Imageurl(),
             'url_video' => fake()->url()
         ];
     }

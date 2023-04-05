@@ -14,6 +14,12 @@ class VideosController extends Controller
 
     /* obtener un listado de videos */
     public function index(){
-        return Video::orderBy('created_at','desc')->get();
+        return Video::orderBy('created_at','desc')->get()
+        ->map(function(Video $video){
+            return[
+                'id' => $video->id,
+                'thumbnail' => $video->thumbnail,
+            ];
+        });
     }
 }

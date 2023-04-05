@@ -24,13 +24,27 @@ class SePuedeObtenerUnListadoDeVideosTest extends TestCase
 
    }
    public function testElPayloadContieneLosVideosEnSistema(){
-       //Crear dos videos
+       /* //Crear dos videos
        $vid = Video::factory()->count(2)->create();
 
        //Llamamos a la API para listar videos
         $this->getJson('/api/videos')
         ->assertJson($vid->toArray());//Validar si los videos creados est'an en la lista
+ */
 
+    //Refactorizar, para solo devolver el id y el thumnails
+    $unId = '123456';
+    $unThumbnail = "https://unaimagen.com";
+    Video::factory()->create([
+        'id'=> $unId,
+        'thumbnail'=> $unThumbnail
+    ]);
+    $this->getJson('/api/videos')
+        ->assertJson([
+            ['id'=> $unId,
+            'thumbnail'=> $unThumbnail
+            ],
+        ]); 
    }
 
    public function testLosVideosOrdenadosNuevoAViejo(){
