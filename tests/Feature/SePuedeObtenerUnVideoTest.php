@@ -46,9 +46,14 @@ class SePuedeObtenerUnVideoTest extends TestCase
 
         //Crear un video en la base de datos
        $video= Video::factory()->create();
-
+       
         //Llamar al API para pedir ese video
        $this->get(sprintf('api/videos/%s', $video->id))
-       ->assertJsonFragment($video->toArray());
+       ->assertExactJson([
+        'id' => $video->id,
+        'titulo' => $video->titulo,
+        'descripcion' => $video->descripcion,
+        'url_video' => $video->url_video,
+       ]);
     }
 }

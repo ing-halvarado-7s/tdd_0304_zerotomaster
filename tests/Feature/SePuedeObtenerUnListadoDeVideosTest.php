@@ -23,8 +23,10 @@ class SePuedeObtenerUnListadoDeVideosTest extends TestCase
         
 
    }
-   public function testElPayloadContieneLosVideosEnSistema(){
-       /* //Crear dos videos
+   public function testSiVideosDevuelvenIdThumbnail(){
+       /* //Crear dos videos 
+       //Lo que hacia en este escaenario:
+       //testElPayloadContieneLosVideosEnSistema
        $vid = Video::factory()->count(2)->create();
 
        //Llamamos a la API para listar videos
